@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@500&display=swap");
+:root { 
+  --main-bg-color: #bd6418;
+  --font1: "Baloo Bhaina 2", cursive;
+  --font2: "Roboto", sans-serif;
+}
+
+.background {
+	background-image: url('test.jpg');
+	background-repeat: no-repeat;
+	  background-attachment: fixed;
+  background-position: center;
+;
+}
+.message {
+    font-family: var(--font1);
+    font-size: 50px;
+    text-align: center;
+	
+}
+
+.font1 {
+  font-family: var(--font1);
+}
+
+.font2 {
+  font-family: var(--font2);
+}
+
+.heading {
+	text-align: center;
+  font-family: var(--font1);
+	text-shadow: 2px 2px 8px #A1A2A3;
+	font-weight: 1000;
+	font-size: 50px;
+	margin-top: 0px;
+}
+
+.heading1 {
+
+  font-family: var(--font1);
+  text-shadow: 2px 2px 8px #A1A2A3;
+
+}
+
+
+.btn {
+  padding: 0px 20px;
+  padding-top: 3px;
+  border: 2px solid black;
+  border-radius: 6px;
+  font-family: var(--font1);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.form-input {
+  padding: 0px 5px;
+  padding-top: 3px;
+  font-size: 16px;
+  margin: 0 13px;
+  font-family: var(--font1);
+}
+
+.label {
+	display: block;
+	direction: ltr;
+}
+
+.text {
+	  font-family: var(--font1);
+	  list-style: none;
+}
+.element {
+	margin-top: 10px;
+}
