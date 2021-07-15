@@ -299,120 +299,120 @@
 // 	console.log(`Server running on port ${PORT}`)
 // })
 
-require('dotenv').config()
-const express = require('express')
-const app = express()
-app.use(express.static('build'))
-const Phonebook = require('./models/person')
+// require('dotenv').config()
+// const express = require('express')
+// const app = express()
+// app.use(express.static('build'))
+// const Phonebook = require('./models/person')
 
-app.use(express.json())
-const morgan = require('morgan')
+// app.use(express.json())
+// const morgan = require('morgan')
 
-const cors = require('cors')
+// const cors = require('cors')
 
-app.use(cors())
+// app.use(cors())
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+// app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
-app.get('/api/persons', (request, response) => {
-	Phonebook.find({}).then(person => {
-		response.json(person)
-	})
-})
+// app.get('/api/persons', (request, response) => {
+// 	Phonebook.find({}).then(person => {
+// 		response.json(person)
+// 	})
+// })
 
-app.post('/api/persons', (request, response, next) => {
-	const body = request.body
-	// console.log(body)
-	if(body.name === undefined || body.phoneNumber === undefined) {
-		response.status(400).send({error: 'data-missing'})
-	}
+// app.post('/api/persons', (request, response, next) => {
+// 	const body = request.body
+// 	// console.log(body)
+// 	if(body.name === undefined || body.phoneNumber === undefined) {
+// 		response.status(400).send({error: 'data-missing'})
+// 	}
 
-	const person = new Phonebook({
-		name: body.name,
-		phoneNumber: body.phoneNumber
-	})
+// 	const person = new Phonebook({
+// 		name: body.name,
+// 		phoneNumber: body.phoneNumber
+// 	})
 
-	person.save().then(savedperson => {
-		response.json(savedperson)
-	})
-	.catch(error => {
-		// console.log(error)
-		next(error)
-	})
-})
+// 	person.save().then(savedperson => {
+// 		response.json(savedperson)
+// 	})
+// 	.catch(error => {
+// 		// console.log(error)
+// 		next(error)
+// 	})
+// })
 
-app.get('/api/persons/:id', (request, response) => {
-	Phonebook.findById(request.params.id).then(record => {
-		if(!record) {
-			response.status(404).end()
-		}
-		else {
-			response.json(record)
-		}
-	})
-	.catch(err => {
-		console.log(err)
-		response.status(400).json({error: 'malformatted-id'})
-	})
-})
+// app.get('/api/persons/:id', (request, response) => {
+// 	Phonebook.findById(request.params.id).then(record => {
+// 		if(!record) {
+// 			response.status(404).end()
+// 		}
+// 		else {
+// 			response.json(record)
+// 		}
+// 	})
+// 	.catch(err => {
+// 		console.log(err)
+// 		response.status(400).json({error: 'malformatted-id'})
+// 	})
+// })
 
-app.delete('/api/persons/:id', (request, response) => {
-	Phonebook.findByIdAndRemove(request.params.id).then(() => 
-		response.status(204).end())
-		.catch(err => {
-			console.log(err)
-			response.status(400).send({error: 'error in deleting'})
-		})
-})
+// app.delete('/api/persons/:id', (request, response) => {
+// 	Phonebook.findByIdAndRemove(request.params.id).then(() => 
+// 		response.status(204).end())
+// 		.catch(err => {
+// 			console.log(err)
+// 			response.status(400).send({error: 'error in deleting'})
+// 		})
+// })
 
-app.put('/api/persons/:id', (request, response) => {
-	const body = request.body
-	console.log(body)
-	if(body.name === undefined || body.phoneNumber === undefined) {
-		response.status(400).send({error: 'missing-data'})
-	}
+// app.put('/api/persons/:id', (request, response) => {
+// 	const body = request.body
+// 	console.log(body)
+// 	if(body.name === undefined || body.phoneNumber === undefined) {
+// 		response.status(400).send({error: 'missing-data'})
+// 	}
 
-	const record = {
-		name : body.name,
-		phoneNumber : body.phoneNumber,
-	}
+// 	const record = {
+// 		name : body.name,
+// 		phoneNumber : body.phoneNumber,
+// 	}
 
-	Phonebook.findByIdAndUpdate(request.params.id, record, {new: true})
-	.then(updatedRecord => {
-		// console.log(updatedRecord)
-		response.json(updatedRecord)
-	})
-	.catch(err => {
-		console.log(err)
-		response.status(400).send({error: 'error-occured'})
-	})
-})
+// 	Phonebook.findByIdAndUpdate(request.params.id, record, {new: true})
+// 	.then(updatedRecord => {
+// 		// console.log(updatedRecord)
+// 		response.json(updatedRecord)
+// 	})
+// 	.catch(err => {
+// 		console.log(err)
+// 		response.status(400).send({error: 'error-occured'})
+// 	})
+// })
 
-app.get('/info', (request, response) => {
+// app.get('/info', (request, response) => {
 
-	Phonebook.countDocuments({}).then((count) => {
-		const requests = `<p> Phonebook has info for ${count} people </p> 
-		<p> ${new Date()} </p>`
-		response.send(requests)
-	})
-})
+// 	Phonebook.countDocuments({}).then((count) => {
+// 		const requests = `<p> Phonebook has info for ${count} people </p> 
+// 		<p> ${new Date()} </p>`
+// 		response.send(requests)
+// 	})
+// })
 
-const errorHandler = (error, request, response, next) => {
-	console.error(error.message)
+// const errorHandler = (error, request, response, next) => {
+// 	console.error(error.message)
 
-	if (error.name === 'ValidationError') {
+// 	if (error.name === 'ValidationError') {
 
-    	return response.status(400).json({ error : error.message })
-  	}
+//     	return response.status(400).json({ error : error.message })
+//   	}
 
-  	return next(error)
-}
+//   	return next(error)
+// }
 
-app.use(errorHandler)
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`)
-})
+// app.use(errorHandler)
+// const PORT = process.env.PORT
+// app.listen(PORT, () => {
+// 	console.log(`Server running on port ${PORT}`)
+// })
 
 // require('dotenv').config()
 // const express = require('express')
@@ -497,3 +497,14 @@ app.listen(PORT, () => {
 // app.listen(PORT, () => {
 // 	console.log(`Server running on port ${PORT}`)
 // })
+
+const app = require('./app')
+const http = require('http')
+const config = require('./utils/config')
+const logger = require('./utils/logger')
+
+const server = http.createServer(app)
+
+server.listen(config.PORT, () => {
+	logger.info(`Server running on ${config.PORT}`)
+})

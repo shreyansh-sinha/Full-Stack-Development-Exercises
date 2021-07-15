@@ -1659,202 +1659,304 @@ parameter2: The second parameter of useEffect is used to specify how often
 
 // export default App
 
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
+// import axios from 'axios'
+// import Name from './Name'
+// import './app.css'
+// const Notification = ({message}) => {
+// 	if({message} === null) {
+// 		return (
+// 			<div className = 'message'></div>
+// 			)
+// 	}
+
+// 	return (
+		
+// 			<div className = "message"> {message} </div>
+		
+// 		)
+// }
+
+// const baseURL = '/api/persons'
+// const getAll = () => {
+// 	const request = axios.get(baseURL)
+// 	return request.then(response => response.data)
+
+// }
+// const App = () => {
+// 	const [persons, setPersons] = useState([])
+
+// 	useEffect(() => {
+// 		axios
+// 		.get(baseURL)
+// 		.then(response => {
+// 			console.log('promise fulfilled')
+// 			setPersons(response.data)
+// 		})
+// 	}, [])
+
+// 	const [newName, setNewName] = useState('')
+// 	const [newNumber, setNewNumber] = useState('')
+// 	const [search, setSearch] = useState('')
+// 	const [errorMessage, setErrorMessage] = useState(null)
+
+// 	const handleNoteChange = (event) => {
+		
+// 		setNewName(event.target.value)
+// 	}
+
+// 	const handleNumChange = (event) => {
+	
+// 		setNewNumber(event.target.value)
+// 	}
+// 	const addData = (event) => {
+// 		event.preventDefault()
+		
+// 		const newObject = {
+// 			name: newName,
+// 			phoneNumber: newNumber,
+			
+// 		}
+
+// 		var tempName = false;
+// 		for(let i=0;i<persons.length;i++) {
+// 			if(persons[i].name === newName) {
+// 				tempName = true;
+// 			}
+// 		}
+
+// 		if(tempName === true) {
+
+// 			var decision = window.confirm(`${newName} already present, replace number with new one ?`)
+// 			const findPerson = persons.find(p => p.name === newName)
+// 			const id = findPerson.id
+
+// 			if(decision === true) {
+				
+// 				const dummy = {...findPerson, phoneNumber: newNumber}
+
+// 				axios
+// 				.put(baseURL + '/' + id.toString(), dummy)
+// 				.then(response => {
+// 					setPersons(persons.map(person => person.id !== id ? person : response.data))
+// 					setNewName('')
+// 					setNewNumber('')
+// 				})
+// 				.catch(error => {
+// 					setErrorMessage(error)
+// 					setNewName('')
+// 					setNewNumber('')
+// 				})
+				
+				
+// 			}
+
+// 			else {
+// 				setNewName('')
+// 				setNewNumber('')
+// 			}
+
+// 		}
+
+// 		else {
+
+// 			axios
+// 			.post(baseURL, newObject)
+// 			.then(response => {
+// 				console.log(response)
+// 				setPersons(persons.concat(newObject))
+// 				setNewName('')
+// 				setNewNumber('')
+// 				setErrorMessage(`Number Added`)
+// 				setTimeout(() => {
+// 					setErrorMessage(null)
+// 				}, 5000)
+// 			})
+// 			.catch(error => {
+// 				// console.log(error.response.data)
+// 				const errorMsg = error.response.data.error
+// 				setNewName('')
+// 				setNewNumber('')
+// 				setErrorMessage(errorMsg)
+// 				setTimeout(() => {
+// 					setErrorMessage(null)
+// 				}, 5000)
+
+// 			})
+// 		}
+// 	}
+
+// 	const filterPersons = persons.filter(person => person.name.toLowerCase().includes(search.trim().toLowerCase())) 
+	
+	
+	
+// 	const searchPerson = (event) => {
+		
+// 		setSearch(event.target.value)
+// 	}
+
+// 	const handleDelete = (candidate) => {
+
+// 		var decision = window.confirm(`Delete ${candidate.name} ?`)
+
+// 		if(decision === true) {
+
+			
+// 			var id = candidate.id
+// 			var name = candidate.name
+
+// 			axios
+// 			.delete(baseURL + '/' + id.toString())
+// 			.then(response => response.data)
+// 			.then(() => {
+// 				setPersons(persons.filter((p) => p.id !== id))
+// 				setErrorMessage(
+// 					`${name} was deleted`
+// 				)
+// 				setTimeout(() => {
+// 					setErrorMessage(null)
+// 				}, 5000)
+// 			})	
+				
+
+// 		}
+// 		else 
+// 			setPersons(persons)
+
+// 	}
+
+// 	return (
+// 			<div className = 'background'>
+// 				<h2 className = 'heading'> PhoneBook </h2>
+// 				<Notification  message = {errorMessage}/>
+// 				<p className = 'font1'> Filter shown with <input type="text" value = {search} onChange = {searchPerson}/> </p> 
+
+				
+// 				{filterPersons.length > 0 ? (
+// 						<ul>
+// 							{filterPersons.map((person, i) => 
+// 									<li className = 'text' key = {i}> {person.name} </li> 
+// 								)}
+// 						</ul>	
+// 					) : <div> </div>}
+// 				<form className = 'form-input' onSubmit={addData}>
+// 					<label className = 'label'> Name </label><input value = {newName} onChange = {handleNoteChange}/>
+// 					<br/>
+// 					<label className = 'label'> PhoneNumber </label><input value = {newNumber} onChange = {handleNumChange}/>
+// 					<br/>
+// 					<button type = 'submit' className = 'btn'> Add </button>
+// 				</form>
+// 				<h2 className = 'heading1'> Numbers </h2>
+// 				<ul>
+// 					{persons.map((person, i) => {
+// 						return <div key = {i}>
+// 							<Name candidate = {person}/> <button className = 'btn' onClick = {() => handleDelete(person)}> DELETE </button> 
+							
+// 						</div>
+// 					})}
+// 				</ul>
+// 			</div>
+// 		)
+// }
+
+// export default App
+
+import React from 'react'
+import {useState, useEffect} from 'react'
+import Note from './Note'
 import axios from 'axios'
 import Name from './Name'
-import './app.css'
-const Notification = ({message}) => {
-	if({message} === null) {
-		return (
-			<div className = 'message'></div>
-			)
-	}
 
-	return (
-		
-			<div className = "message"> {message} </div>
-		
-		)
-}
+const baseURL = '/api/notes'
 
-const baseURL = '/api/persons'
 const getAll = () => {
 	const request = axios.get(baseURL)
 	return request.then(response => response.data)
-
 }
-const App = () => {
-	const [persons, setPersons] = useState([])
+const App =() => {
+	
+	const [notes, setNotes] = useState([])
+	const [newNote, setNewNote] = useState('')
+	const [showAll, setShowAll] = useState(true)
+	// console.log(notes)
 
 	useEffect(() => {
-		axios
-		.get(baseURL)
-		.then(response => {
-			console.log('promise fulfilled')
-			setPersons(response.data)
+		axios.get(baseURL).then(response => {
+		setNotes(response.data)
 		})
 	}, [])
+	const addNote = (event) => {
+		event.preventDefault()
+		const newObject = {
+			id: notes.length + 1,
+			content: newNote,
+			date: new Date().toISOString(),
+			important: Math.random() < 0.5,
+		}
+		
+		// here the original notes array
+		// is not mutated. A copy of notes
+		// is created and altering is done
+		axios
+		.post(baseURL, newObject)
+		.then(response => {
+			console.log(response)
+			setNotes(notes.concat(newObject))
+			setNewNote('')
+		})
+		
+	}
 
-	const [newName, setNewName] = useState('')
-	const [newNumber, setNewNumber] = useState('')
-	const [search, setSearch] = useState('')
-	const [errorMessage, setErrorMessage] = useState(null)
-
+	// The event handler is called every time a change 
+	// occurs in the input element.
 	const handleNoteChange = (event) => {
 		
-		setNewName(event.target.value)
+		setNewNote(event.target.value)
 	}
 
-	const handleNumChange = (event) => {
-	
-		setNewNumber(event.target.value)
-	}
-	const addData = (event) => {
-		event.preventDefault()
-		
-		const newObject = {
-			name: newName,
-			phoneNumber: newNumber,
-			
-		}
+	const notesToShow = showAll
+    ? notes
+    : notes.filter(note => note.important)
 
-		var tempName = false;
-		for(let i=0;i<persons.length;i++) {
-			if(persons[i].name === newName) {
-				tempName = true;
-			}
-		}
+    const toggleImportanceOf = (id) => {
+    	console.log("importance of " + id + " is toggled")
 
-		if(tempName === true) {
+    	const url = baseURL + '/' + id.toString()
+    	console.log(url)
+    	const note = notes.find(n => n.id === id)
+    	// console.log(note)
+    	const changedNote = { ...note, important: !note.important }
 
-			var decision = window.confirm(`${newName} already present, replace number with new one ?`)
-			const findPerson = persons.find(p => p.name === newName)
-			const id = findPerson.id
+	  axios
+	  .put(url, changedNote)
+	  .then(response => {
+	  	console.log(response)
+	    setNotes(notes.map(note => note.id !== id ? note : response.data))
+	  })
+    }
 
-			if(decision === true) {
-				
-				const dummy = {...findPerson, phoneNumber: newNumber}
-
-				axios
-				.put(baseURL + '/' + id.toString(), dummy)
-				.then(response => {
-					setPersons(persons.map(person => person.id !== id ? person : response.data))
-					setNewName('')
-					setNewNumber('')
-				})
-				.catch(error => {
-					setErrorMessage(error)
-					setNewName('')
-					setNewNumber('')
-				})
-				
-				
-			}
-
-			else {
-				setNewName('')
-				setNewNumber('')
-			}
-
-		}
-
-		else {
-
-			axios
-			.post(baseURL, newObject)
-			.then(response => {
-				console.log(response)
-				setPersons(persons.concat(newObject))
-				setNewName('')
-				setNewNumber('')
-				setErrorMessage(`Number Added`)
-				setTimeout(() => {
-					setErrorMessage(null)
-				}, 5000)
-			})
-			.catch(error => {
-				// console.log(error.response.data)
-				const errorMsg = error.response.data.error
-				setNewName('')
-				setNewNumber('')
-				setErrorMessage(errorMsg)
-				setTimeout(() => {
-					setErrorMessage(null)
-				}, 5000)
-
-			})
-		}
-	}
-
-	const filterPersons = persons.filter(person => person.name.toLowerCase().includes(search.trim().toLowerCase())) 
-	
-	
-	
-	const searchPerson = (event) => {
-		
-		setSearch(event.target.value)
-	}
-
-	const handleDelete = (candidate) => {
-
-		var decision = window.confirm(`Delete ${candidate.name} ?`)
-
-		if(decision === true) {
-
-			
-			var id = candidate.id
-			var name = candidate.name
-
-			axios
-			.delete(baseURL + '/' + id.toString())
-			.then(response => response.data)
-			.then(() => {
-				setPersons(persons.filter((p) => p.id !== id))
-				setErrorMessage(
-					`${name} was deleted`
-				)
-				setTimeout(() => {
-					setErrorMessage(null)
-				}, 5000)
-			})	
-				
-
-		}
-		else 
-			setPersons(persons)
-
-	}
 
 	return (
-			<div className = 'background'>
-				<h2 className = 'heading'> PhoneBook </h2>
-				<Notification  message = {errorMessage}/>
-				<p className = 'font1'> Filter shown with <input type="text" value = {search} onChange = {searchPerson}/> </p> 
+			<div>
+				<h1> Notes </h1>
+				<div>
+					<button onClick = {() => setShowAll(!showAll)}> 
+						show {showAll ? 'important': 'all'}
+					</button>
+				</div>
 
-				
-				{filterPersons.length > 0 ? (
-						<ul>
-							{filterPersons.map((person, i) => 
-									<li className = 'text' key = {i}> {person.name} </li> 
-								)}
-						</ul>	
-					) : <div> </div>}
-				<form className = 'form-input' onSubmit={addData}>
-					<label className = 'label'> Name </label><input value = {newName} onChange = {handleNoteChange}/>
-					<br/>
-					<label className = 'label'> PhoneNumber </label><input value = {newNumber} onChange = {handleNumChange}/>
-					<br/>
-					<button type = 'submit' className = 'btn'> Add </button>
-				</form>
-				<h2 className = 'heading1'> Numbers </h2>
 				<ul>
-					{persons.map((person, i) => {
-						return <div key = {i}>
-							<Name candidate = {person}/> <button className = 'btn' onClick = {() => handleDelete(person)}> DELETE </button> 
-							
-						</div>
+					{notesToShow.map((note, i) => {
+						return <Note key = {i} note = {note} toggleImportance = {() => toggleImportanceOf(note.id)}/>
 					})}
 				</ul>
+				
+
+
+				<form onSubmit = {addNote}>
+					<input value = {newNote} onChange={handleNoteChange}/>
+					<button type = 'submit'> Save </button>
+				</form>
 			</div>
 		)
 }
